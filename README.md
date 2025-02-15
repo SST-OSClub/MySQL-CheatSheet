@@ -111,3 +111,6 @@ The record with the name **Emily Clark** is removed from the `users` table.
 | 5   | David Miller   | david.miller_updated@example.com | 2025-02-14 15:20:00 |
 | 10  | Anurag Kumar   | kumar.anurag@gmail.com           | 2025-02-15 10:05:00 |
 
+## Additional Assingment - Bonus 50 points
+
+You have to create an index of user's name and their email so that we can fetch the email of the user just by having their name. You will have to implement it from scratch or in the code stub provided. Make sure its not GPTed, we follow patterns in code. 
