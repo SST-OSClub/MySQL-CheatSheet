@@ -24,7 +24,8 @@ function createUser(name, email) {
   connection.query(query, [name, email], (err, results) => {
     if (err) {
       // TODO: Handle error appropriately
-      console.error(err);
+      console.error('Database Error:',err);
+      console.log('An error occurred while creating the user. Please try again later.');
       return;
     }
     console.log('User created with ID:', results.insertId);
