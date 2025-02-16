@@ -1,5 +1,4 @@
 // Node.js CRUD Operations Code Stub
-
 const mysql = require('mysql2');
 
 // TODO: Update these connection details
@@ -62,11 +61,12 @@ function deleteUser(name) {
 
 // --- READ: Retrieve All Records ---
 function readUsers() {
-  const query = 'YOUR SQL QUERY GOES HERE';
+  const query = 'SELECT * FROM users';
   connection.query(query, (err, results) => {
     if (err) {
       // TODO: Handle error appropriately
-      console.error(err);
+      console.error('Error retrieving users:',err);
+      console.log('An error occurred while retrieving users. Please try again later.');
       return;
     }
     console.log('Users:', results);
@@ -74,10 +74,10 @@ function readUsers() {
 }
 
 // TODO: Uncomment and test the functions as needed
- createUser('Anurag Kumar', 'kumar.anurag@gmail.com');
+createUser('Anurag Kumar', 'kumar.anurag@gmail.com');
 updateUserEmail('David Miller', 'david.miller_updated@example.com');
 deleteUser('Emily Clark');
-// readUsers();
+readUsers();
 
 // TODO: Close the connection when finished
- connection.end();
+connection.end();
