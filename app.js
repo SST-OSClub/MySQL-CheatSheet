@@ -48,11 +48,12 @@ function updateUserEmail(name, newEmail) {
 
 // --- DELETE: Remove a Record ---
 function deleteUser(name) {
-  const query = 'YOUR SQL QUERY GOES HERE';
+  const query = 'DELETE FROM users WHERE name = ?';
   connection.query(query, [name], (err, results) => {
     if (err) {
       // TODO: Handle error appropriately
-      console.error(err);
+      console.error('Error deleting user: ',err);
+      console.log('An error occurred while deleting the user. Please try again later.');
       return;
     }
     console.log(`User ${name} deleted.`);
@@ -75,7 +76,7 @@ function readUsers() {
 // TODO: Uncomment and test the functions as needed
  createUser('Anurag Kumar', 'kumar.anurag@gmail.com');
 updateUserEmail('David Miller', 'david.miller_updated@example.com');
-// deleteUser('Emily Clark');
+deleteUser('Emily Clark');
 // readUsers();
 
 // TODO: Close the connection when finished
