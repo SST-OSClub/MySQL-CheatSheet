@@ -59,22 +59,23 @@ function readUsers() {
   });
 }
 
-function createIndex() {
-  const query = 'CREATE INDEX idx_user_email ON users (name, email)';
-  connection.query(query, (err, results) => {
+function makeIndex() {
+  const query = 'CREATE INDEX user_lookup ON users(name,email)';
+  connection.query(query, (err, res) => {
     if (err) {
-      console.error('failed', err);
+      console.log(err);
       return;
     }
-    console.log('success');
+    console.log('Index done');
   });
 }
+
 
 createUser('Anurag Kumar', 'kumar.anurag@gmail.com');
 updateUserEmail('David Miller', 'david.miller_updated@example.com');
 deleteUser('Emily Clark');
 readUsers();
-createIndex();
+makeIndex();
 
 setTimeout(() => {
   connection.end();
