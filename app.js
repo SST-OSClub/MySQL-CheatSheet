@@ -1,12 +1,12 @@
 // Node.js CRUD Operations Code Stub
 
-const mysql = require('mysql');
+const mysql = require('mysql2');
 
 // TODO: Update these connection details
 const connection = mysql.createConnection({
   host: 'localhost',
-  user: 'YOUR_USERNAME',
-  password: 'YOUR_PASSWORD',
+  user: 'root',
+  password: 'Mumtaz@1970',
   database: 'users'
 });
 
@@ -20,7 +20,7 @@ connection.connect((err) => {
 
 // --- CREATE: Insert a New Record ---
 function createUser(name, email) {
-  const query = 'YOUR SQL QUERY GOES HERE';
+  const query =  'INSERT INTO users (name, email) VALUES (?, ?)';
   connection.query(query, [name, email], (err, results) => {
     if (err) {
       // TODO: Handle error appropriately
@@ -71,10 +71,10 @@ function readUsers() {
 }
 
 // TODO: Uncomment and test the functions as needed
-// createUser('Anurag Kumar', 'kumar.anurag@gmail.com');
+ createUser('Anurag Kumar', 'kumar.anurag@gmail.com');
 // updateUserEmail('David Miller', 'david.miller_updated@example.com');
 // deleteUser('Emily Clark');
 // readUsers();
 
 // TODO: Close the connection when finished
-// connection.end();
+ connection.end();
