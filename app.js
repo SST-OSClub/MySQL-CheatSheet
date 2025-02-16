@@ -74,15 +74,38 @@ function readUsers() {
 }
 
 
+//--- INDEX READING: Retrieving the user's data by giving user's name---
+let Index = {};
+
+function User() {
+  const query = 'SELECT name, email FROM users';
+  connection.query(query, (err, results) => {
+    if (err) {
+      console.error('Error retrieving users:', err);
+      return;
+    }
+    // Creating index
+    results.forEach(user => {
+      Index[user.name] = user.email;
+    });
+    console.log('User Index:', Index);
+  });
+}
+
+// Fetch email by name
+function getEmailByName(name) {
+  return Index[name] || "Email not found";
+}
+
 
 
 
 // TODO: Uncomment and test the functions as needed
 createUser('Anurag Kumar', 'kumar.anurag@gmail.com');
-createUser('Anurag Kumar', 'kumar.anurag@yahoo.com');
 updateUserEmail('David Miller', 'david.miller_updated@example.com');
 deleteUser('Emily Clark');
 readUsers();
+User();
 
 // TODO: Close the connection when finished
 connection.end();
