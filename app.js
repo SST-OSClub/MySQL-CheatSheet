@@ -34,11 +34,12 @@ function createUser(name, email) {
 
 // --- UPDATE: Modify Email Address ---
 function updateUserEmail(name, newEmail) {
-  const query = 'YOUR SQL QUERY GOES HERE';
+  const query = 'UPDATE users SET email = ? WHERE name = ?';
   connection.query(query, [newEmail, name], (err, results) => {
     if (err) {
       // TODO: Handle error appropriately
-      console.error(err);
+      console.error('Error updating user:',err);
+      console.log('An error occurred while updating the user. Please try again later.');
       return;
     }
     console.log(`User ${name} updated.`);
@@ -73,7 +74,7 @@ function readUsers() {
 
 // TODO: Uncomment and test the functions as needed
  createUser('Anurag Kumar', 'kumar.anurag@gmail.com');
-// updateUserEmail('David Miller', 'david.miller_updated@example.com');
+updateUserEmail('David Miller', 'david.miller_updated@example.com');
 // deleteUser('Emily Clark');
 // readUsers();
 
