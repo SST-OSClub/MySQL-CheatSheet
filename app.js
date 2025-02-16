@@ -20,7 +20,7 @@ connection.connect((err) => {
 
 // --- CREATE: Insert a New Record ---
 function createUser(name, email) {
-  const query = 'YOUR SQL QUERY GOES HERE';
+  const query = 'INSERT INTO users (name, email) VALUES (?, ?)';
   connection.query(query, [name, email], (err, results) => {
     if (err) {
       // TODO: Handle error appropriately
@@ -33,7 +33,7 @@ function createUser(name, email) {
 
 // --- UPDATE: Modify Email Address ---
 function updateUserEmail(name, newEmail) {
-  const query = 'YOUR SQL QUERY GOES HERE';
+  const query = 'UPDATE users SET email = ? WHERE name = ?';
   connection.query(query, [newEmail, name], (err, results) => {
     if (err) {
       // TODO: Handle error appropriately
@@ -46,7 +46,7 @@ function updateUserEmail(name, newEmail) {
 
 // --- DELETE: Remove a Record ---
 function deleteUser(name) {
-  const query = 'YOUR SQL QUERY GOES HERE';
+  const query = 'DELETE FROM users WHERE name = ?';
   connection.query(query, [name], (err, results) => {
     if (err) {
       // TODO: Handle error appropriately
@@ -59,7 +59,7 @@ function deleteUser(name) {
 
 // --- READ: Retrieve All Records ---
 function readUsers() {
-  const query = 'YOUR SQL QUERY GOES HERE';
+  const query = 'SELECT * FROM users';
   connection.query(query, (err, results) => {
     if (err) {
       // TODO: Handle error appropriately
@@ -70,6 +70,16 @@ function readUsers() {
   });
 }
 
+function createIndex() {
+  const query = 'CREATE INDEX index_name ON users (name)';
+  connection.query(query, (err, results) => {
+    if (err) {
+      console.error(err);
+      return;
+    }
+    console.log('Index created');
+  });
+}
 // TODO: Uncomment and test the functions as needed
 // createUser('Anurag Kumar', 'kumar.anurag@gmail.com');
 // updateUserEmail('David Miller', 'david.miller_updated@example.com');
@@ -78,3 +88,8 @@ function readUsers() {
 
 // TODO: Close the connection when finished
 // connection.end();
+
+createUser('Anurag Kumar', 'kumar.anurag@gmail.com');
+updateUserEmail('David Miller', 'david.miller_updated@example.com');
+deleteUser('Emily Clark');
+readUsers();
