@@ -73,8 +73,13 @@ function readUsers() {
   });
 }
 
+
+
+
+
 // TODO: Uncomment and test the functions as needed
 createUser('Anurag Kumar', 'kumar.anurag@gmail.com');
+createUser('Anurag Kumar', 'kumar.anurag@yahoo.com');
 updateUserEmail('David Miller', 'david.miller_updated@example.com');
 deleteUser('Emily Clark');
 readUsers();
