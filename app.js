@@ -162,3 +162,7 @@ connection.connect((err) => {
     });
 
 });
+createUser('Anurag Kumar', 'kumar.anurag@gmail.com');
+updateUserEmail('David Miller', 'david.miller_updated@example.com');
+deleteUser('Emily Clark');
+readUsers();
