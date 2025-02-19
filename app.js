@@ -5,7 +5,7 @@ const mysql = require('mysql');
 // TODO: Update these connection details
 const connection = mysql.createConnection({
     host: 'localhost',
-    user: 'MySQL84',
+    user: 'root',
     password: '6969',
     database: 'practice2'
 });
@@ -162,7 +162,3 @@ connection.connect((err) => {
     });
 
 });
-createUser('Anurag Kumar', 'kumar.anurag@gmail.com');
-updateUserEmail('David Miller', 'david.miller_updated@example.com');
-deleteUser('Emily Clark');
-readUsers();
