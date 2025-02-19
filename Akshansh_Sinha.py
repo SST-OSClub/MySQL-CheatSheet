@@ -6,8 +6,8 @@ def connect_db():
     # TODO: Update these connection details
     return mysql.connector.connect(
         host="localhost",
-        user="YOUR_USERNAME",
-        password="YOUR_PASSWORD",
+        user="root",
+        password="tiger",
         database="users"
     )
 
@@ -15,7 +15,7 @@ def connect_db():
 def create_user(name, email):
     conn = connect_db()
     cursor = conn.cursor()
-    query = "YOUR QUERY GOES HERE"
+    query = "INSERT INTO users (name,email) values(%s,%s)"
     try:
         cursor.execute(query, (name, email))
         conn.commit()
@@ -31,7 +31,7 @@ def create_user(name, email):
 def update_user_email(name, new_email):
     conn = connect_db()
     cursor = conn.cursor()
-    query = "YOUR QUERY GOES HERE"
+    query = "UPDATE users SET email = %s WHERE name = %s"
     try:
         cursor.execute(query, (new_email, name))
         conn.commit()
@@ -47,7 +47,7 @@ def update_user_email(name, new_email):
 def delete_user(name):
     conn = connect_db()
     cursor = conn.cursor()
-    query = "YOUR QUERY GOES HERE"
+    query = "DELETE FROM users WHERE name = %s"
     try:
         cursor.execute(query, (name,))
         conn.commit()
@@ -63,7 +63,7 @@ def delete_user(name):
 def read_users():
     conn = connect_db()
     cursor = conn.cursor()
-    query = "YOUR QUERY GOES HERE"
+    query = "SELECT * FROM users"
     try:
         cursor.execute(query)
         results = cursor.fetchall()
@@ -78,6 +78,6 @@ def read_users():
 
 # TODO: Uncomment and test the functions as needed
 # create_user('Anurag Kumar', 'kumar.anurag@gmail.com')
-# update_user_email('David Miller', 'david.miller_updated@example.com')
-# delete_user('Emily Clark')
+# update_user_email('Anurag Kumar', 'david.miller@example.com')
+# delete_user('Anurag Kumar')
 # read_users()
