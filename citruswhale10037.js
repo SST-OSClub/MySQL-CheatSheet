@@ -1,13 +1,15 @@
 // Node.js CRUD Operations Code Stub
 
-const mysql = require('mysql');
+const mysql = require('mysql2');
 
 // TODO: Update these connection details
+// createConnection --> single connection. 
+// createPool --> multiple connections to multiple databases. Useful for db heavy apps.
 const connection = mysql.createConnection({
   host: 'localhost',
-  user: 'YOUR_USERNAME',
-  password: 'YOUR_PASSWORD',
-  database: 'users'
+  user: 'root',
+  password: 'Macaroni66__',
+  database: 'lil_unicorn_mysql1'
 });
 
 connection.connect((err) => {
@@ -20,7 +22,7 @@ connection.connect((err) => {
 
 // --- CREATE: Insert a New Record ---
 function createUser(name, email) {
-  const query = 'YOUR SQL QUERY GOES HERE';
+  const query = 'INSERT INTO users (name, email) VALUES (?, ?);';
   connection.query(query, [name, email], (err, results) => {
     if (err) {
       // TODO: Handle error appropriately
@@ -33,7 +35,7 @@ function createUser(name, email) {
 
 // --- UPDATE: Modify Email Address ---
 function updateUserEmail(name, newEmail) {
-  const query = 'YOUR SQL QUERY GOES HERE';
+  const query = 'UPDATE users SET email = ? WHERE name = ?;';
   connection.query(query, [newEmail, name], (err, results) => {
     if (err) {
       // TODO: Handle error appropriately
@@ -46,7 +48,7 @@ function updateUserEmail(name, newEmail) {
 
 // --- DELETE: Remove a Record ---
 function deleteUser(name) {
-  const query = 'YOUR SQL QUERY GOES HERE';
+  const query = 'DELETE FROM users WHERE name = ?;';
   connection.query(query, [name], (err, results) => {
     if (err) {
       // TODO: Handle error appropriately
@@ -59,7 +61,7 @@ function deleteUser(name) {
 
 // --- READ: Retrieve All Records ---
 function readUsers() {
-  const query = 'YOUR SQL QUERY GOES HERE';
+  const query = 'SELECT * FROM users';
   connection.query(query, (err, results) => {
     if (err) {
       // TODO: Handle error appropriately
@@ -71,10 +73,25 @@ function readUsers() {
 }
 
 // TODO: Uncomment and test the functions as needed
-// createUser('Anurag Kumar', 'kumar.anurag@gmail.com');
-// updateUserEmail('David Miller', 'david.miller_updated@example.com');
-// deleteUser('Emily Clark');
-// readUsers();
+createUser('Anurag Kumar', 'kumar.anurag@gmail.com');
+updateUserEmail('David Miller', 'david.miller_updated@example.com');
+deleteUser('Emily Clark');
+readUsers();
 
 // TODO: Close the connection when finished
-// connection.end();
+connection.end();
+
+
+/* Notes to self:
+- Connect with workbench to get visual idea. Click on lil energy zap thing to run sql commands on workbench to get visual idea.
+- Explore more abt schema, try making a basic e-commerce schema.
+- Code runner installed for js to execute (it was a pain to understand if it was working or not without this).
+- Use '?' when fields need to be replaced with values for any query.
+- Connections have to be created in the js file itself with the following base details:
+    - host
+    - user
+    - password
+    - database
+- Manually ensure connections get closed post finishing the operations needed.
+- Try indexing next.
+*/
